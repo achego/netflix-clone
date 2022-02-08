@@ -1,4 +1,5 @@
 import React from 'react'
+import LoadingAnimation from '../../../../components/LoadingAnimation/LoadingAnimation'
 import BuildControl from './BuildControl/BuildControl'
 import cs from './BuildControls.module.css'
 
@@ -11,20 +12,24 @@ const BuildControls = (props) => {
        }
     }
 
-     const controls = Object.keys(props.ingredients).map(ingr => {
-         let disabled = false
-         if (props.ingredients[ingr] <= 0){
-             disabled = true
-         }
-         return (
-         <BuildControl
-            key={ingr} 
-            ingredient={ingr}
-            addIngredient={() => props.addIngredient(ingr)}
-            removeIngredient={() => props.removeIngredient(ingr)}
-            disabled={disabled}/>
-     )
-    })
+    let controls = <LoadingAnimation />
+    
+     if (props.ingredients.salad !== undefined ) {
+         controls = Object.keys(props.ingredients).map(ingr => {
+            let disabled = false
+            if (props.ingredients[ingr] <= 0){
+                disabled = true
+            }
+            return (
+            <BuildControl
+               key={ingr} 
+               ingredient={ingr}
+               addIngredient={() => props.addIngredient(ingr)}
+               removeIngredient={() => props.removeIngredient(ingr)}
+               disabled={disabled}/>
+        )
+       })
+     }
 
     return (
         <div className={cs.BuildControls}>
@@ -32,7 +37,8 @@ const BuildControls = (props) => {
             {controls}
             <button 
                 className={cs.orderNow}
-                disabled={disableOrder}>order now</button>
+                disabled={disableOrder}
+                onClick={props.purchace}>order now</button>
         </div>
     )
 }

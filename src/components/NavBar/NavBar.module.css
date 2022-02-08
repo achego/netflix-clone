@@ -1,3 +1,29 @@
 .NavBar {
     background-color: var(--color);
+    height: var(--appbar-height);
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(170, 71, 5);
+    padding: 0 2rem;
+    align-items: center;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 198;
+}
+
+.NavBar .Menu {
+    display: none;
+}
+
+@media screen and (max-width: 500px) {
+    .NavBar .NavItems {
+        display: none;
+    }
+
+    .NavBar .Menu {
+        display: inline-block;
+    }
 }

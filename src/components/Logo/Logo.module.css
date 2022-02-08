@@ -1,0 +1,10 @@
+.Logo {
+    height: var(--height);
+    background: var(--background);
+    padding: 0.4rem 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.Logo img {
+    height: 100%;
+}

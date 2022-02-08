@@ -1,0 +1,51 @@
+{
+  "orders": [
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 1,
+        "cheese": 0,
+        "meat": 0
+      },
+      "price": 4.9,
+      "customer": {
+        "name": "asnasm dnsm",
+        "email": "sd sss @",
+        "address": "sa asm s"
+      },
+      "deliveryMethod": "Fastest",
+      "id": 1
+    },
+    {
+      "ingredients": {
+        "salad": 1,
+        "bacon": 2,
+        "cheese": 1,
+        "meat": 1
+      },
+      "price": 7.300000000000001,
+      "customer": {
+        "name": "xbznb,mz",
+        "email": "zxmZ>xz @",
+        "address": "zcjzcjkbx,cbzx,n "
+      },
+      "deliveryMethod": "Fastest",
+      "id": 2
+    }
+  ],
+  "ingredients": {
+    "salad": 0,
+    "bacon": 0,
+    "cheese": 0,
+    "meat": 0
+  },
+  "price": {
+    "basePrice": 4,
+    "ingredientPrices": {
+      "salad": 0.5,
+      "bacon": 0.4,
+      "cheese": 1.3,
+      "meat": 0.7
+    }
+  }
+}

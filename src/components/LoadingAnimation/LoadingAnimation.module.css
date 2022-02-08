@@ -1,0 +1,24 @@
+.LoadingAnimation {
+    margin: auto;
+    width: fit-content;
+    animation: spin 3s linear infinite; 
+}
+
+@keyframes spin {
+    
+    40% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    0% {
+        transform: scale(1.5);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

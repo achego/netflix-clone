@@ -13,16 +13,27 @@ const Burger = (props) => {
     }
 
     if (ingredients.length === 0){
-        ingredients = <p>Start adding your ingredients</p>
+        ingredients = <p>{props.text}</p>
     }
 
     return (
-        <div className={cs.Burger}>
+        <div 
+            className={cs.Burger}
+            style={{
+                height: props.height,
+                width: props.width
+            }}>
             <BurgerIngredients type='bread-top'/>
                 {ingredients}
             <BurgerIngredients type='bread-bottom'/>
         </div>
     )
+}
+
+Burger.defaultProps = {
+    width: '28rem',
+    height: '20rem',
+    text: 'Start adding your ingredients'
 }
 
 export default Burger

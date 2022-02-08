@@ -1,55 +1,66 @@
-import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import BuildControls from './columns/BuildControls/BuildControls'
 import Burger from './columns/Burger/Burger'
 import OrderSummary from './columns/OrderSummary/OrderSummary'
+import * as burgerBuilderActions from '../../store/actions/burgerBuilderActions'
+import { useEffect, useState } from 'react'
 
-const INGREDIENT_PRICES = {
-    salad: 0.5,
-    bacon: 0.4,
-    cheese: 1.3,
-    meat: 0.7,
-}
+const BurgerBuilder = (props) => {
 
+    // Router Constants
+    const navigate = useNavigate()
 
-const BurgerBuilder = () => {
+    // Constants
+    const [purchacing, setpurchacing] = useState(false)
 
-    const [ingredients, setIngredients] = useState({
-        salad: 0,
-        bacon: 0,
-        cheese: 0,
-        meat: 0,
-    })
+    useEffect(() => {
+        props.initIngredientsAndPrice()
+    }, [])
 
-    const [totalPrice, settotalPrice] = useState(4)
-
-    const addIngredient = (type) => {
-        const newIngr = ingredients
-        newIngr[type] = ingredients[type] + 1
-        setIngredients(newIngr)
-        settotalPrice(totalPrice + INGREDIENT_PRICES[type])
+    const updatePurchacing = () => {
+        setpurchacing(true)
     }
-    const removeIngredient = (type) => {
-        if (ingredients[type] <= 0){
-            return
-        }
-        const newIngr = ingredients
-        newIngr[type] = ingredients[type] - 1
-        setIngredients(newIngr)
-        settotalPrice(totalPrice - INGREDIENT_PRICES[type])
+    const cancelOrder = () => {
+        setpurchacing(false)
     }
-
+    const continueOrder = () => {
+        navigate('/checkout')
+    }
     return (
         <div>
-            {/* <OrderSummary ingredients={ingredients}/> */}
-            <Burger ingredients={ingredients}/>
+            <OrderSummary 
+            ingredients={props.ingredients}
+            ordered={purchacing}
+            cancelOrder={cancelOrder}
+            continueOrder={continueOrder}
+            totalPrice={props.totalPrice}/>
+            <Burger ingredients={props.ingredients}/>
             <BuildControls 
-                ingredients={ingredients}
-                addIngredient={addIngredient}
-                removeIngredient={removeIngredient}
-                totalPrice={totalPrice}
+                ingredients={props.ingredients}
+                addIngredient={props.addIngredient}
+                removeIngredient={props.removeIngredient}
+                totalPrice={props.totalPrice}
+                purchace={updatePurchacing}
                 />
         </div>
     )
 }
 
-export default BurgerBuilder
+const mapStateToProps = state => {
+    return {
+        ingredients: state.ingredients,
+        totalPrice: state.totalPrice
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    
+    return {
+        addIngredient: (ingrType) => dispatch(burgerBuilderActions.addIngredient(ingrType)),
+        removeIngredient: (ingrType) => dispatch(burgerBuilderActions.removeIngredient(ingrType)),
+        initIngredientsAndPrice: () => dispatch(burgerBuilderActions.initIngredientsAndPrice())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder)

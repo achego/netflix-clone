@@ -1,0 +1,32 @@
+.SignUp {
+    display: block;
+    padding: 2rem 2rem;
+    text-align: center;
+    max-width: 600px;
+    border: 1px solid rgb(204, 204, 204);
+    margin: 2rem auto;
+}
+
+.SignUp button {
+    padding: 0.6rem 1rem;
+    border: none;
+    background-color: rgb(125, 231, 125);
+    color: rgb(3, 3, 3);
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0px 0px 10px green inset, 0px 0px 10px green inset;
+    transition: 0.3s ease;
+    /* border: 1px solid rgb(1, 53, 1); */
+}
+
+.SignUp button:hover {
+    background-color: rgb(7, 167, 7);
+    color: white;
+}
+
+@media screen and (max-width: 700px) {
+    .SignUp {
+        width: 80%;
+    }
+}
